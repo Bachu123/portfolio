@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navigation from '@/components/Navigation';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Projects from '@/components/Projects';
+import Experience from '@/components/Experience';
+import Skills from '@/components/Skills';
+import Education from '@/components/Education';
+import Contact from '@/components/Contact';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Navigation />
+      <Hero />
+      <About />
+      <Projects />
+      <Experience />
+      <Skills />
+      <Education />
+      <Contact />
+      
+      {/* Footer */}
+      <footer className="py-8 bg-muted/30 border-t border-border">
+        <div className="section-container">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+            <p>© 2025 Sahil Sundriyal. All rights reserved.</p>
+            <p>Built with React, TypeScript & Three.js</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
