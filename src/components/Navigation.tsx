@@ -40,13 +40,17 @@ export default function Navigation() {
           {/* Logo */}
           <a
             href="#"
-            className="relative group"
+            className="relative group flex items-center"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
-            <div className="text-2xl font-bold text-gradient">Sahil</div>
+            <img 
+              src="/logo-s.svg" 
+              alt="S Logo" 
+              className="w-10 h-10 transition-transform duration-300 group-hover:scale-110"
+            />
             <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
           </a>
 
