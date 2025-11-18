@@ -1,0 +1,21 @@
+{
+  "name": "Sahil Sundriyal - Portfolio",
+  "short_name": "Sahil Portfolio",
+  "description": "Portfolio of Sahil Sundriyal - Gen-AI Analyst & AI Engineer",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "theme_color": "#b266ff",
+  "background_color": "#1a0a2e",
+  "display": "standalone",
+  "start_url": "/"
+}

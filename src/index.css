@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 270 50% 7%;
+    --foreground: 0 0% 98%;
+    --card: 270 50% 11%;
+    --card-foreground: 0 0% 98%;
+    --popover: 270 50% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 280 100% 70%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 270 50% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 270 30% 25%;
+    --muted-foreground: 270 20% 65%;
+    --accent: 320 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 270 50% 20%;
+    --input: 270 50% 15%;
+    --ring: 280 100% 70%;
+    --radius: 0.75rem;
+    --section-bg: 270 50% 9%;
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 270 50% 7%;
+    --foreground: 0 0% 98%;
+    --card: 270 50% 11%;
+    --card-foreground: 0 0% 98%;
+    --popover: 270 50% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 280 100% 70%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 270 50% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 270 30% 25%;
+    --muted-foreground: 270 20% 65%;
+    --accent: 320 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 270 50% 20%;
+    --input: 270 50% 15%;
+    --ring: 280 100% 70%;
+    --section-bg: 270 50% 9%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] hover:border-primary/50;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  .glow-effect {
+    @apply shadow-lg shadow-primary/50;
+  }
+
+  .glass-effect {
+    @apply bg-card/10 backdrop-blur-lg border border-border/50;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-br from-background via-secondary to-background;
+  }
+
+  .purple-glow {
+    @apply shadow-2xl shadow-primary/30;
+  }
+
+  .stat-card {
+    @apply glass-effect rounded-2xl p-6 hover:bg-card/20 transition-all duration-300;
+  }
+}
