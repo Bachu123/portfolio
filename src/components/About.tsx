@@ -20,20 +20,14 @@ export default function About() {
           </h2>
           <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
             <p>
-              I'm a BCA student at <span className="text-primary font-semibold">Amity University</span>, passionate 
-              about building innovative web applications and extracting insights from data. My journey 
-              combines technical skills in web development, data analysis, and game development with 
-              a constant drive to learn and create.
+              A BCA student specializing in <span className="text-primary font-semibold">Gen-AI technologies</span>, 
+              data-driven development, and modern web systems. Experienced with Python, MySQL, Flask, PyGame, 
+              and analytical workflows.
             </p>
             <p>
-              During my internship at <span className="text-primary font-semibold">Dhupar Chemicals</span> (May–July 2024), 
-              I contributed to website updates, database optimizations, and collaborated with teams using Agile 
-              methodologies. I thrive on turning complex problems into elegant, user-friendly solutions.
-            </p>
-            <p>
-              Whether it's analyzing Netflix content trends, building 3D games with PyGame, or creating 
-              dynamic web applications with Flask and JavaScript, I bring curiosity and dedication to 
-              every project.
+              Passionate about building <span className="text-primary font-semibold">intelligent applications</span> using 
+              AI models, automation, and machine learning techniques. Skilled in leveraging data insights to create 
+              innovative solutions that drive business value.
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -33,7 +34,7 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-md'
+          ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-lg shadow-primary/5'
           : 'bg-transparent'
       }`}
     >
@@ -42,7 +43,7 @@ export default function Navigation() {
           {/* Logo */}
           <a
             href="#"
-            className="text-xl font-bold text-gradient"
+            className="text-xl font-bold text-gradient hover:opacity-80 transition-opacity"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,7 +53,7 @@ export default function Navigation() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <Button
                 key={item.label}
@@ -63,21 +64,24 @@ export default function Navigation() {
                 {item.label}
               </Button>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

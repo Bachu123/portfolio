@@ -45,16 +45,16 @@ export default function Contact() {
       href: 'mailto:sahilsundriyal2004@gmail.com',
     },
     {
+      icon: Github,
+      label: 'GitHub',
+      value: 'github.com/notiamsam',
+      href: 'https://github.com/notiamsam',
+    },
+    {
       icon: Linkedin,
       label: 'LinkedIn',
       value: 'Connect with me',
-      href: 'https://linkedin.com/in/sahilsundriyal',
-    },
-    {
-      icon: Github,
-      label: 'GitHub',
-      value: 'View my code',
-      href: 'https://github.com/sahilsundriyal',
+      href: 'https://linkedin.com',
     },
   ];
 
@@ -144,7 +144,7 @@ export default function Contact() {
                         href={info.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-start gap-4 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+                        className="flex items-start gap-4 p-3 rounded-lg hover:bg-primary/10 hover:border-primary/50 border border-transparent transition-all"
                       >
                         <div className="p-2 rounded-lg bg-primary/10">
                           <Icon className="w-5 h-5 text-primary" />
