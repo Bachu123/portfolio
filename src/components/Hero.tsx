@@ -1,7 +1,6 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Sphere, useGLTF, Stage } from '@react-three/drei';
+import Spline from '@splinetool/react-spline';
 import { Button } from '@/components/ui/button';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, GraduationCap, BookOpen, Target } from 'lucide-react';
 import { FaPython, FaReact, FaNodeJs } from 'react-icons/fa';
 import { SiTensorflow, SiTypescript, SiJavascript } from 'react-icons/si';
@@ -133,6 +132,42 @@ function DeskInBubble() {
   );
 }
 
+// Spline component with loading state
+function SplineWithLoading({ scene }: { scene: string }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleError = () => {
+    setIsLoading(false);
+    setHasError(true);
+  };
+
+  return (
+    <div className="w-full h-full relative">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-card/10 rounded-2xl z-10">
+          <div className="text-primary animate-pulse">Loading 3D Scene...</div>
+        </div>
+      )}
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-card/10 rounded-2xl z-10">
+          <div className="text-destructive">Failed to load 3D scene</div>
+        </div>
+      )}
+      <Spline 
+        scene={scene}
+        className="w-full h-full"
+        onLoad={handleLoad}
+        onError={handleError}
+      />
+    </div>
+  );
+}
+
 export default function Hero() {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -199,9 +234,6 @@ export default function Hero() {
           {/* Left: Text Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-widest text-primary animate-fade-in">
-                Hello 👋, I'm
-              </p>
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight animate-fade-in-up">
                 <span className="text-gradient">Sahil</span>
                 <br />
@@ -294,26 +326,20 @@ export default function Hero() {
             </div>
           </div>
           
-          {/* Right: 3D Scene */}
+          {/* Right: 3D Scene - Spline */}
           <div className="h-[400px] lg:h-[600px] w-full animate-fade-in relative">
             <div className="absolute inset-0 purple-glow rounded-full opacity-50" />
-            <Canvas shadows>
-              <Suspense fallback={null}>
-                <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-                <OrbitControls 
-                  enableZoom={false}
-                  enablePan={false}
-                  autoRotate
-                  autoRotateSpeed={0.5}
+            <div className="w-full h-full rounded-2xl overflow-hidden relative">
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center bg-card/10 rounded-2xl">
+                  <div className="text-primary animate-pulse">Loading 3D Scene...</div>
+                </div>
+              }>
+                <SplineWithLoading 
+                  scene="https://prod.spline.design/trZahTJpIkVlhi17/scene.splinecode"
                 />
-                {/* TOGGLE BETWEEN THESE TWO: */}
-                {/* Option 1: Current desk scene */}
-                <DeskInBubble />
-                
-                {/* Option 2: Your Blender model (uncomment after exporting) */}
-                {/* <LaptopModel /> */}
               </Suspense>
-            </Canvas>
+            </div>
           </div>
         </div>
       </div>
