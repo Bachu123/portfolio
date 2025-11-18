@@ -43,7 +43,7 @@ export default function Experience() {
                   </Badge>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
+                <CardContent className="space-y-4">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Briefcase className="w-4 h-4" />
                   <span>Full-time Internship</span>
@@ -53,29 +53,29 @@ export default function Experience() {
                   <li className="flex items-start gap-3">
                     <span className="text-primary text-xl mt-0.5">▹</span>
                     <span>
-                      Updated and maintained company website with modern UI/UX improvements, 
-                      enhancing user engagement and site performance
+                      Performed website updates, bug fixes, and feature enhancements to improve 
+                      user experience and functionality
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary text-xl mt-0.5">▹</span>
                     <span>
-                      Optimized MySQL database queries reducing load times by 40%, improving 
-                      overall application responsiveness
+                      Wrote complex SQL queries and managed MySQL databases for efficient 
+                      data operations
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary text-xl mt-0.5">▹</span>
                     <span>
-                      Collaborated with cross-functional teams using Agile methodologies and 
-                      sprint planning, ensuring timely delivery of features
+                      Collaborated with designers and developers to meet sprint goals and 
+                      deliver quality solutions
                     </span>
                   </li>
                 </ul>
                 
                 <div className="flex flex-wrap gap-2 pt-2">
                   {['HTML/CSS', 'JavaScript', 'MySQL', 'Agile', 'Git'].map((skill, i) => (
-                    <Badge key={i} variant="outline">
+                    <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
                       {skill}
                     </Badge>
                   ))}

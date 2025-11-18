@@ -60,9 +60,10 @@ function DeskScene() {
       ))}
       
       {/* Ambient light */}
-      <ambientLight intensity={0.4} />
-      <pointLight position={[2, 3, 2]} intensity={1} castShadow />
-      <pointLight position={[-2, 2, 1]} intensity={0.5} color="#14B8A6" />
+      <ambientLight intensity={0.3} />
+      <pointLight position={[2, 3, 2]} intensity={0.8} castShadow />
+      <pointLight position={[-2, 2, 1]} intensity={0.6} color="#0ea5ff" />
+      <pointLight position={[0, 2, 3]} intensity={0.4} color="#0ea5ff" />
     </group>
   );
 }
@@ -73,7 +74,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-secondary/20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
       <div className="section-container py-20 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text Content */}
@@ -82,14 +83,14 @@ export default function Hero() {
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
                 Sahil Sundriyal
               </h1>
-              <h2 className="text-2xl lg:text-3xl font-semibold text-muted-foreground">
-                BCA Student & Web Developer
+              <h2 className="text-2xl lg:text-3xl font-semibold text-gradient">
+                Aspiring Gen-AI Analyst & AI Engineer
               </h2>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-lg">
-                Building web experiences with{' '}
-                <span className="text-gradient font-semibold">Python</span>,{' '}
-                <span className="text-gradient font-semibold">JavaScript</span> & 
-                data-driven insights.
+                Building intelligent systems with{' '}
+                <span className="text-primary font-semibold">Python</span>,{' '}
+                <span className="text-primary font-semibold">Data</span>, and{' '}
+                <span className="text-primary font-semibold">AI-driven solutions</span>.
               </p>
             </div>
             

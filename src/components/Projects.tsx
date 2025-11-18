@@ -6,6 +6,17 @@ import { useInView } from 'react-intersection-observer';
 
 const projects = [
   {
+    title: '3D FPS Game using PyGame',
+    description: 'Doom-inspired first-person shooter built from scratch',
+    tech: ['Python', 'PyGame', 'Ray Casting', '3D Graphics'],
+    highlights: [
+      'Implemented ray-casting engine for 3D rendering',
+      'Developed player movement, collision detection, and shooting mechanics',
+      'Created multiple levels with increasing difficulty and enemy AI',
+    ],
+    github: 'https://github.com/notiamsam/fpsgame',
+  },
+  {
     title: 'Netflix Content Data Analysis',
     description: 'Comprehensive exploratory data analysis of Netflix content library',
     tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy'],
@@ -14,18 +25,7 @@ const projects = [
       'Created visualizations for release trends, genre distribution, and ratings',
       'Generated insights on content strategy and regional preferences',
     ],
-    github: 'https://github.com/sahilsundriyal',
-  },
-  {
-    title: '3D FPS Game using PyGame',
-    description: 'Doom-inspired first-person shooter built from scratch',
-    tech: ['Python', 'PyGame', 'Ray Casting', 'Game Design'],
-    highlights: [
-      'Implemented ray-casting engine for 3D rendering',
-      'Developed player movement, collision detection, and shooting mechanics',
-      'Created multiple levels with increasing difficulty and enemy AI',
-    ],
-    github: 'https://github.com/sahilsundriyal',
+    github: 'https://github.com/notiamsam/netflix_data_analysis',
   },
   {
     title: 'Fake News Generator',
@@ -36,7 +36,7 @@ const projects = [
       'Implemented responsive frontend with modern UI/UX',
       'Deployed with RESTful API architecture',
     ],
-    github: 'https://github.com/sahilsundriyal',
+    github: 'https://github.com/notiamsam/Fake_News_Generator',
   },
 ];
 
@@ -60,7 +60,7 @@ export default function Projects() {
               Featured Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A selection of projects showcasing my skills in web development, data analysis, and game creation.
+              A selection of projects showcasing skills in AI, data analysis, game development, and web applications.
             </p>
           </div>
           
@@ -99,24 +99,28 @@ export default function Projects() {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className="gap-2"
+                      className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary"
                       onClick={() => window.open(project.github, '_blank')}
                     >
                       <Github className="w-4 h-4" />
-                      Code
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="gap-2"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Demo
+                      View Code
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline"
+              size="lg"
+              className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary"
+              onClick={() => window.open('https://github.com/notiamsam', '_blank')}
+            >
+              <Github className="w-5 h-5" />
+              See all projects on GitHub
+            </Button>
           </div>
         </div>
       </div>
