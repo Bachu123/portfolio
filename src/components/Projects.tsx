@@ -64,13 +64,14 @@ const projects = [
   },
   {
     title: 'Cricket Application',
-    description: 'Interactive cricket application with live scores, statistics, and match details',
-    tech: ['React', 'TypeScript', 'Vite', 'Modern Web'],
+    description: 'AI-powered interactive cricket application with live scores, statistics, and intelligent match predictions',
+    tech: ['React', 'TypeScript', 'OpenAI API', 'TensorFlow', 'Keras', 'Vite'],
     highlights: [
+      'AI-powered match predictions using TensorFlow and Keras models',
+      'Intelligent insights and analysis powered by OpenAI API',
       'Real-time cricket match scores and updates',
-      'Comprehensive player and team statistics',
+      'Comprehensive player and team statistics with ML-driven analytics',
       'Responsive design with modern UI/UX',
-      'Live match tracking and detailed analytics',
     ],
     github: 'https://github.com/notiamsam',
     live: 'https://cricket-sahil-sundariyal.vercel.app/',
