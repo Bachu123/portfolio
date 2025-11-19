@@ -173,6 +173,45 @@ export default function Hero() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleResumeDownload = async () => {
+    // Array of resume PDFs
+    const resumes = [
+      '/Ai engineer Sahil.pdf',
+      '/Gen AI Analyst Sahil.pdf'
+    ];
+    
+    // Randomly select one resume
+    const randomResume = resumes[Math.floor(Math.random() * resumes.length)];
+    const fileName = randomResume.split('/').pop() || 'resume.pdf';
+    
+    try {
+      // Fetch the PDF file
+      const response = await fetch(randomResume);
+      const blob = await response.blob();
+      
+      // Create a blob URL and trigger download
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Fallback to direct link if fetch fails
+      const link = document.createElement('a');
+      link.href = randomResume;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   const stats = [
     { 
       value: 'BCA', 
@@ -318,7 +357,7 @@ export default function Hero() {
                 size="lg"
                 variant="ghost"
                 className="glass-effect"
-                onClick={() => window.open('https://pdfhost.io/v/kWDpcXpw5x_sahil_res', '_blank')}
+                onClick={handleResumeDownload}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View Resume
