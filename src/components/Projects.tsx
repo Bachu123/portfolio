@@ -63,15 +63,18 @@ const projects = [
     github: 'https://github.com/notiamsam/Fake_News_Generator',
   },
   {
-    title: 'E-commerce Analytics Dashboard',
-    description: 'Full-stack dashboard for e-commerce data visualization',
-    tech: ['React', 'Node.js', 'MongoDB', 'Chart.js'],
+    title: 'Cricket Application',
+    description: 'Interactive cricket application with live scores, statistics, and match details',
+    tech: ['React', 'TypeScript', 'Vite', 'Modern Web'],
     highlights: [
-      'Real-time sales tracking and inventory management',
-      'Customer behavior analytics with ML insights',
-      'Responsive design with mobile optimization',
+      'Real-time cricket match scores and updates',
+      'Comprehensive player and team statistics',
+      'Responsive design with modern UI/UX',
+      'Live match tracking and detailed analytics',
     ],
     github: 'https://github.com/notiamsam',
+    live: 'https://cricket-sahil-sundariyal.vercel.app/',
+    featured: true,
   },
 ];
 
