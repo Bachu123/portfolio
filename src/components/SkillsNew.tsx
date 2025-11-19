@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useInView } from 'react-intersection-observer';
 import { 
-  SiPython, SiJavascript, SiHtml5, SiMysql, SiTypescript,
+  SiPython, SiJavascript, SiHtml5, SiMysql,
   SiPandas, SiNumpy, SiTensorflow, SiFlask, SiReact,
-  SiGit, SiGithub, SiJupyter, SiPostman, SiCanva
+  SiGit, SiGithub, SiJupyter, SiPostman,
+  SiDocker, SiKubernetes
 } from 'react-icons/si';
-import { TbChartBar, TbBrandFramer, TbCode, TbBriefcase, TbDatabase } from 'react-icons/tb';
+import { TbChartBar, TbBrandFramer, TbCode, TbDatabase, TbBrain, TbCloud, TbApi } from 'react-icons/tb';
+import { FaBrain, FaRobot, FaDatabase } from 'react-icons/fa';
 
 const skillCategories = [
   {
@@ -15,40 +17,49 @@ const skillCategories = [
       { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
       { name: 'HTML/CSS', icon: SiHtml5, color: '#E34F26' },
       { name: 'SQL', icon: SiMysql, color: '#4479A1' },
-      { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
     ],
   },
   {
-    title: 'Libraries & Frameworks',
+    title: 'ML/AI & Frameworks',
     skills: [
-      { name: 'pandas', icon: SiPandas, color: '#150458' },
+      { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
+      { name: 'Keras', icon: TbBrain, color: '#D00000' },
+      { name: 'Scikit-Learn', icon: FaBrain, color: '#F7931E' },
+      { name: 'LangChain', icon: FaRobot, color: '#00C853' },
+      { name: 'LLM APIs', icon: TbApi, color: '#9C27B0' },
+      { name: 'PyTorch', icon: TbBrain, color: '#EE4C2C' },
+      { name: 'Pandas', icon: SiPandas, color: '#150458' },
       { name: 'NumPy', icon: SiNumpy, color: '#013243' },
       { name: 'Matplotlib', icon: TbChartBar, color: '#11557c' },
-      { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
-      { name: 'PyGame', icon: TbBrandFramer, color: '#0ea5ff' },
-      { name: 'Flask', icon: SiFlask, color: '#000000' },
       { name: 'React', icon: SiReact, color: '#61DAFB' },
+      { name: 'Flask', icon: SiFlask, color: '#000000' },
+      { name: 'PyGame', icon: TbBrandFramer, color: '#0ea5ff' },
     ],
   },
   {
-    title: 'Tools & Technologies',
+    title: 'MLOps/AIOps & Tools',
     skills: [
-      { name: 'VS Code', icon: TbCode, color: '#007ACC' },
-      { name: 'MySQL Workbench', icon: SiMysql, color: '#4479A1' },
+      { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+      { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
+      { name: 'RunPod', icon: TbCloud, color: '#00D9FF' },
+      { name: 'GPU Containers', icon: TbCloud, color: '#7B68EE' },
+      { name: 'CI/CD Basics', icon: TbCode, color: '#FF6B6B' },
       { name: 'Git', icon: SiGit, color: '#F05032' },
       { name: 'GitHub', icon: SiGithub, color: '#181717' },
+      { name: 'VS Code', icon: TbCode, color: '#007ACC' },
       { name: 'Jupyter', icon: SiJupyter, color: '#F37626' },
+      { name: 'Colab', icon: TbCode, color: '#F9AB00' },
       { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
     ],
   },
   {
-    title: 'Additional Skills',
+    title: 'Data & Visualization',
     skills: [
+      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+      { name: 'ETL Pipelines', icon: FaDatabase, color: '#4A90E2' },
+      { name: 'Analytics', icon: TbChartBar, color: '#00BCD4' },
       { name: 'Power BI', icon: TbDatabase, color: '#F2C811' },
       { name: 'Excel', icon: TbChartBar, color: '#217346' },
-      { name: 'Canva', icon: SiCanva, color: '#00C4CC' },
-      { name: 'Data Analysis', icon: TbChartBar, color: '#0ea5ff' },
-      { name: 'Agile/Scrum', icon: TbBriefcase, color: '#0ea5ff' },
     ],
   },
 ];
