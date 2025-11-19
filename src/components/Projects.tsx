@@ -18,18 +18,6 @@ const projects = [
     featured: true,
   },
   {
-    title: 'AI-Powered Chat Assistant',
-    description: 'Intelligent chatbot using OpenAI API for natural conversations',
-    tech: ['Python', 'OpenAI API', 'Flask', 'React'],
-    highlights: [
-      'Integrated GPT models for context-aware responses',
-      'Built real-time chat interface with message history',
-      'Implemented user authentication and session management',
-    ],
-    github: 'https://github.com/notiamsam',
-    featured: true,
-  },
-  {
     title: 'Netflix Content Data Analysis',
     description: 'Comprehensive exploratory data analysis of Netflix content library',
     tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy'],
