@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { GraduationCap, Award, Certificate } from 'lucide-react';
+import { GraduationCap, Award, FileCheck } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
 const education = [
@@ -168,7 +168,7 @@ export default function Education() {
                     <div className={`p-3 rounded-lg ${
                       cert.type === 'primary' ? 'bg-primary/10' : 'bg-muted'
                     }`}>
-                      <Certificate className={`w-6 h-6 ${
+                      <FileCheck className={`w-6 h-6 ${
                         cert.type === 'primary' ? 'text-primary' : 'text-muted-foreground'
                       }`} />
                     </div>
