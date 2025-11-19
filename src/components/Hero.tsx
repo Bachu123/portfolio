@@ -215,8 +215,8 @@ export default function Hero() {
   const stats = [
     { 
       value: 'BCA', 
-      label: 'FINAL YEAR', 
-      sublabel: 'STUDENT',
+      label: 'GRADUATE', 
+      sublabel: '2024',
       icon: GraduationCap
     },
     { 

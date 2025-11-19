@@ -7,7 +7,7 @@ const education = [
     degree: 'Bachelor of Computer Applications (BCA)',
     institution: 'Amity University',
     location: 'Online',
-    period: '2022 - Present',
+    period: '2022 - 2024',
     gpa: '7.53 / 10',
     type: 'primary',
   },

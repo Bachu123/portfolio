@@ -24,7 +24,7 @@ export default function About() {
             </h2>
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a final year <span className="text-primary font-semibold">BCA student</span> at Amity University, 
+                I'm a <span className="text-primary font-semibold">BCA graduate</span> from Amity University, 
                 passionate about <span className="text-primary font-semibold">Gen-AI technologies</span> and modern web development. 
                 Currently seeking opportunities to apply my skills in Python, Machine Learning, and Full-Stack development.
               </p>
