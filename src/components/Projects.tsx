@@ -61,7 +61,7 @@ const projects = [
       'Comprehensive player and team statistics with ML-driven analytics',
       'Responsive design with modern UI/UX',
     ],
-    github: 'https://github.com/notiamsam',
+    github: 'https://github.com/notiamsam/cricket-app',
     live: 'https://cricket-sahil-sundariyal.vercel.app/',
     featured: true,
   },
@@ -77,13 +77,12 @@ export default function Projects() {
     <section id="projects" className="py-20 lg:py-32 relative overflow-hidden">
       {/* Background gradient effects */}
       <div className="absolute inset-0 gradient-bg opacity-30" />
-      
+
       <div className="section-container relative z-10">
-        <div 
+        <div
           ref={ref}
-          className={`space-y-12 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`space-y-12 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
           <div className="text-center space-y-4">
             <h2 className="text-3xl lg:text-5xl font-bold">
@@ -93,14 +92,13 @@ export default function Projects() {
               Academic and personal projects showcasing my skills in AI/ML, web development, and data analysis
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <Card 
+              <Card
                 key={index}
-                className={`glass-effect border-border/50 hover:border-primary/50 transition-all duration-300 group h-full ${
-                  project.featured ? 'purple-glow' : ''
-                }`}
+                className={`glass-effect border-border/50 hover:border-primary/50 transition-all duration-300 group h-full ${project.featured ? 'purple-glow' : ''
+                  }`}
               >
                 <CardHeader>
                   <div className="space-y-2">
@@ -126,19 +124,19 @@ export default function Projects() {
                       </li>
                     ))}
                   </ul>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech, i) => (
-                      <Badge 
-                        key={i} 
-                        variant="secondary" 
+                      <Badge
+                        key={i}
+                        variant="secondary"
                         className="glass-effect text-xs border-primary/20 text-primary"
                       >
                         {tech}
                       </Badge>
                     ))}
                   </div>
-                  
+
                   <div className="flex gap-3 pt-2">
                     <Button
                       size="sm"
@@ -169,7 +167,7 @@ export default function Projects() {
               </Card>
             ))}
           </div>
-          
+
           <div className="text-center pt-8">
             <Button
               size="lg"
