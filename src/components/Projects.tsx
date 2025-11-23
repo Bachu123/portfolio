@@ -37,7 +37,7 @@ const projects = [
       'Achieved 85% accuracy in trend prediction',
       'Created interactive dashboard for visualization',
     ],
-    github: 'https://github.com/notiamsam',
+    github: 'https://github.com/notiamsam/stock-price-predictor-lstm',
   },
   {
     title: 'Fake News Generator',
