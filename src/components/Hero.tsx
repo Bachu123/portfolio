@@ -4,133 +4,7 @@ import { Suspense, useState } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, GraduationCap, BookOpen, Target } from 'lucide-react';
 import { FaPython, FaReact, FaNodeJs } from 'react-icons/fa';
 import { SiTensorflow, SiTypescript, SiJavascript } from 'react-icons/si';
-
-// Component to load and display your Blender model
-function LaptopModel() {
-  // IMPORTANT: Replace 'asus-laptop.glb' with your exported model filename
-  // The model should be in the public folder
-  const { scene } = useGLTF('/asus-laptop.glb');
-  
-  return (
-    <group>
-      {/* Purple bubble/sphere */}
-      <Sphere args={[2.5, 64, 64]}>
-        <meshPhysicalMaterial
-          color="#7c3aed"
-          transparent
-          opacity={0.15}
-          roughness={0.2}
-          metalness={0.8}
-          clearcoat={1}
-          clearcoatRoughness={0}
-        />
-      </Sphere>
-      
-      {/* Your Blender model */}
-      <primitive 
-        object={scene} 
-        scale={0.8} 
-        position={[0, -0.5, 0]}
-        rotation={[0, Math.PI * 0.25, 0]}
-      />
-      
-      {/* Lights */}
-      <ambientLight intensity={0.4} />
-      <pointLight position={[2, 3, 2]} intensity={0.8} color="#b266ff" castShadow />
-      <pointLight position={[-2, 2, 1]} intensity={0.6} color="#e879f9" />
-      <spotLight 
-        position={[0, 3, 0]} 
-        intensity={1} 
-        color="#b266ff" 
-        angle={0.6} 
-        penumbra={0.5}
-        castShadow
-      />
-    </group>
-  );
-}
-
-// Current desk scene (comment this out when using Blender model)
-function DeskInBubble() {
-  return (
-    <group>
-      {/* Purple bubble/sphere */}
-      <Sphere args={[2.5, 64, 64]}>
-        <meshPhysicalMaterial
-          color="#7c3aed"
-          transparent
-          opacity={0.15}
-          roughness={0.2}
-          metalness={0.8}
-          clearcoat={1}
-          clearcoatRoughness={0}
-        />
-      </Sphere>
-      
-      {/* Desk Scene inside */}
-      <group scale={0.8}>
-        {/* Desk */}
-        <mesh position={[0, -0.5, 0]} castShadow>
-          <boxGeometry args={[3, 0.1, 1.5]} />
-          <meshStandardMaterial color="#1a1a2e" />
-        </mesh>
-        
-        {/* Laptop base */}
-        <mesh position={[0, -0.4, 0.2]} castShadow>
-          <boxGeometry args={[1.2, 0.05, 0.9]} />
-          <meshStandardMaterial color="#16213e" metalness={0.8} roughness={0.2} />
-        </mesh>
-        
-        {/* Laptop screen */}
-        <mesh position={[0, 0.1, -0.25]} rotation={[-0.2, 0, 0]} castShadow>
-          <boxGeometry args={[1.2, 0.8, 0.05]} />
-          <meshStandardMaterial color="#0f3460" metalness={0.8} roughness={0.2} />
-        </mesh>
-        
-        {/* Screen glow with code */}
-        <mesh position={[0, 0.1, -0.22]} rotation={[-0.2, 0, 0]}>
-          <boxGeometry args={[1.1, 0.7, 0.01]} />
-          <meshStandardMaterial 
-            color="#b266ff" 
-            emissive="#b266ff" 
-            emissiveIntensity={0.8}
-          />
-        </mesh>
-        
-        {/* Coffee mug */}
-        <mesh position={[0.8, -0.2, 0.3]} castShadow>
-          <cylinderGeometry args={[0.1, 0.12, 0.25, 16]} />
-          <meshStandardMaterial color="#2d1b69" metalness={0.4} />
-        </mesh>
-        
-        {/* Books stack */}
-        <mesh position={[-0.9, -0.35, 0.2]} castShadow>
-          <boxGeometry args={[0.3, 0.3, 0.4]} />
-          <meshStandardMaterial color="#533483" />
-        </mesh>
-        
-        {/* Notebook */}
-        <mesh position={[-0.5, -0.45, 0.4]} rotation={[0, 0.3, 0]} castShadow>
-          <boxGeometry args={[0.4, 0.02, 0.3]} />
-          <meshStandardMaterial color="#6b46c1" />
-        </mesh>
-      </group>
-      
-      {/* Ambient light */}
-      <ambientLight intensity={0.4} />
-      <pointLight position={[2, 3, 2]} intensity={0.8} color="#b266ff" castShadow />
-      <pointLight position={[-2, 2, 1]} intensity={0.6} color="#e879f9" />
-      <spotLight 
-        position={[0, 3, 0]} 
-        intensity={1} 
-        color="#b266ff" 
-        angle={0.6} 
-        penumbra={0.5}
-        castShadow
-      />
-    </group>
-  );
-}
+import { motion } from 'framer-motion';
 
 // Spline component with loading state
 function SplineWithLoading({ scene }: { scene: string }) {
@@ -149,8 +23,11 @@ function SplineWithLoading({ scene }: { scene: string }) {
   return (
     <div className="w-full h-full relative">
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-card/10 rounded-2xl z-10">
-          <div className="text-primary animate-pulse">Loading 3D Scene...</div>
+        <div className="absolute inset-0 flex items-center justify-center bg-card/10 rounded-2xl z-10 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+            <div className="text-primary font-medium animate-pulse">Loading 3D Scene...</div>
+          </div>
         </div>
       )}
       {hasError && (
@@ -158,7 +35,7 @@ function SplineWithLoading({ scene }: { scene: string }) {
           <div className="text-destructive">Failed to load 3D scene</div>
         </div>
       )}
-      <Spline 
+      <Spline
         scene={scene}
         className="w-full h-full"
         onLoad={handleLoad}
@@ -174,35 +51,27 @@ export default function Hero() {
   };
 
   const handleResumeDownload = async () => {
-    // Array of resume PDFs
     const resumes = [
       '/Ai engineer Sahil.pdf',
       '/Gen AI Analyst Sahil.pdf'
     ];
-    
-    // Randomly select one resume
+
     const randomResume = resumes[Math.floor(Math.random() * resumes.length)];
     const fileName = randomResume.split('/').pop() || 'resume.pdf';
-    
+
     try {
-      // Fetch the PDF file
       const response = await fetch(randomResume);
       const blob = await response.blob();
-      
-      // Create a blob URL and trigger download
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = fileName;
       document.body.appendChild(link);
       link.click();
-      
-      // Clean up
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error downloading resume:', error);
-      // Fallback to direct link if fetch fails
       const link = document.createElement('a');
       link.href = randomResume;
       link.download = fileName;
@@ -213,41 +82,41 @@ export default function Hero() {
   };
 
   const stats = [
-    { 
-      value: 'BCA', 
-      label: 'GRADUATE', 
+    {
+      value: 'BCA',
+      label: 'GRADUATE',
       sublabel: '2024',
       icon: GraduationCap
     },
-    { 
-      value: '10+', 
-      label: 'PROJECTS', 
+    {
+      value: '10+',
+      label: 'PROJECTS',
       sublabel: 'COMPLETED',
       icon: BookOpen
     },
-    { 
-      value: 'AI/ML', 
-      label: 'FOCUS', 
+    {
+      value: 'AI/ML',
+      label: 'FOCUS',
       sublabel: 'AREA',
       icon: Target
     }
   ];
 
   const socialLinks = [
-    { 
-      icon: Github, 
+    {
+      icon: Github,
       href: 'https://github.com/notiamsam',
-      color: 'hover:text-purple-400'
+      color: 'hover:text-purple-400 hover:border-purple-400/50 hover:bg-purple-400/10'
     },
-    { 
-      icon: Linkedin, 
+    {
+      icon: Linkedin,
       href: 'https://www.linkedin.com/in/sahil-sundriyal-904b6b233/',
-      color: 'hover:text-blue-400'
+      color: 'hover:text-blue-400 hover:border-blue-400/50 hover:bg-blue-400/10'
     },
-    { 
-      icon: Mail, 
+    {
+      icon: Mail,
       href: 'mailto:sahilsundriyal2004@gmail.com',
-      color: 'hover:text-pink-400'
+      color: 'hover:text-pink-400 hover:border-pink-400/50 hover:bg-pink-400/10'
     }
   ];
 
@@ -260,135 +129,215 @@ export default function Hero() {
     { icon: SiJavascript, color: 'text-yellow-400' }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden gradient-bg">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-pulse delay-700" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background selection:bg-primary/30">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute -top-[20%] -right-[10%] w-[70vw] h-[70vw] bg-primary/20 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+          className="absolute -bottom-[20%] -left-[10%] w-[60vw] h-[60vw] bg-accent/10 rounded-full blur-[100px]"
+        />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       </div>
 
       <div className="section-container relative z-10 py-20 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text Content */}
-          <div className="space-y-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-8"
+          >
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight animate-fade-in-up">
+              <motion.div variants={itemVariants} className="inline-block">
+                <div className="px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-4 inline-flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                  Available for work
+                </div>
+              </motion.div>
+
+              <motion.h1 variants={itemVariants} className="text-5xl lg:text-7xl font-bold tracking-tight font-heading">
                 <span className="text-gradient">Sahil</span>
                 <br />
-                <span className="text-gradient">Sundriyal</span>
-              </h1>
-              <div className="space-y-2 animate-fade-in-up delay-200">
-                <p className="text-2xl lg:text-3xl font-semibold">
-                  Aspiring <span className="text-primary">Gen-AI Engineer</span>
+                <span className="text-foreground">Sundriyal</span>
+              </motion.h1>
+
+              <motion.div variants={itemVariants} className="space-y-4">
+                <p className="text-2xl lg:text-3xl font-medium text-foreground/80">
+                  Aspiring <span className="text-primary font-bold">Gen-AI Engineer</span>
                 </p>
-                <p className="text-lg lg:text-xl text-muted-foreground max-w-lg">
-                  Fresh graduate passionate about building intelligent systems with AI/ML and modern web technologies
+                <p className="text-lg lg:text-xl text-muted-foreground max-w-lg leading-relaxed">
+                  Fresh graduate passionate about building intelligent systems with AI/ML and modern web technologies.
                 </p>
-              </div>
+              </motion.div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 animate-fade-in-up delay-300">
+            <motion.div variants={itemVariants} className="grid grid-cols-3 gap-4">
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={index} className="stat-card">
-                    <div className="flex items-center gap-3">
+                  <div key={index} className="glass-effect p-4 rounded-2xl hover:bg-white/5 transition-colors border border-white/5">
+                    <div className="flex flex-col gap-2">
                       <Icon className="w-5 h-5 text-primary" />
                       <div>
-                        <div className="text-2xl font-bold text-primary">{stat.value}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {stat.label}
-                          <br />
-                          {stat.sublabel}
+                        <div className="text-2xl font-bold text-foreground font-heading">{stat.value}</div>
+                        <div className="text-xs text-muted-foreground font-medium tracking-wide">
+                          {stat.label} {stat.sublabel}
                         </div>
                       </div>
                     </div>
                   </div>
                 );
               })}
-            </div>
+            </motion.div>
 
             {/* Tech Icons */}
-            <div className="flex gap-4 animate-fade-in-up delay-400">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               {techIcons.map((tech, index) => {
                 const Icon = tech.icon;
                 return (
-                  <div
+                  <motion.div
                     key={index}
-                    className="w-12 h-12 glass-effect rounded-lg flex items-center justify-center hover:scale-110 transition-transform"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center border border-white/5 cursor-pointer"
                   >
                     <Icon className={`w-6 h-6 ${tech.color}`} />
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="flex gap-4 animate-fade-in-up delay-500">
+            <motion.div variants={itemVariants} className="flex gap-4">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
                 return (
-                  <a
+                  <motion.a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-12 h-12 glass-effect rounded-full flex items-center justify-center ${social.color} transition-all hover:scale-110`}
+                    whileHover={{ y: -3 }}
+                    className={`w-12 h-12 glass-effect rounded-full flex items-center justify-center border border-white/10 transition-all duration-300 ${social.color}`}
                   >
                     <Icon className="w-5 h-5" />
-                  </a>
+                  </motion.a>
                 );
               })}
-            </div>
+            </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up delay-600">
-              <Button 
-                size="lg" 
-                className="glass-effect border-primary/50 hover:bg-primary/20 text-primary hover:text-primary-foreground"
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+              <Button
+                size="lg"
+                className="h-12 px-8 rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300"
                 onClick={() => scrollToSection('contact')}
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Get In Touch
               </Button>
-              <Button 
+              <Button
                 size="lg"
-                variant="ghost"
-                className="glass-effect"
+                variant="outline"
+                className="h-12 px-8 rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/50 text-foreground transition-all duration-300"
                 onClick={handleResumeDownload}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View Resume
               </Button>
-            </div>
-          </div>
-          
+            </motion.div>
+          </motion.div>
+
           {/* Right: 3D Scene - Spline */}
-          <div className="h-[400px] lg:h-[600px] w-full animate-fade-in relative">
-            <div className="absolute inset-0 purple-glow rounded-full opacity-50" />
-            <div className="w-full h-full rounded-2xl overflow-hidden relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="h-[500px] lg:h-[700px] w-full relative perspective-1000"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-full blur-[100px] opacity-50 animate-pulse" />
+            <div className="w-full h-full relative z-10">
               <Suspense fallback={
-                <div className="w-full h-full flex items-center justify-center bg-card/10 rounded-2xl">
+                <div className="w-full h-full flex items-center justify-center">
                   <div className="text-primary animate-pulse">Loading 3D Scene...</div>
                 </div>
               }>
-                <SplineWithLoading 
+                <SplineWithLoading
                   scene="https://prod.spline.design/trZahTJpIkVlhi17/scene.splinecode"
                 />
               </Suspense>
             </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs text-muted-foreground uppercase tracking-widest">Scroll</span>
+          <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center p-1">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 rounded-full bg-primary"
+            />
           </div>
         </div>
-      </div>
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 glass-effect border-primary/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-primary rounded-full animate-pulse" />
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
